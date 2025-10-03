@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -16,6 +15,8 @@ import {
   FileText,
   User,
   Sparkles,
+  Users,
+  Target,
 } from "lucide-react";
 
 const navItems = [
@@ -43,6 +44,16 @@ const navItems = [
     href: "/dashboard/resume",
     icon: <FileText />,
     label: "Resume",
+  },
+  {
+    href: "/dashboard/networking",
+    icon: <Users />,
+    label: "Networking",
+  },
+  {
+    href: "/dashboard/goals",
+    icon: <Target />,
+    label: "Goals",
   },
   {
     href: "/dashboard/profile",

@@ -1,10 +1,9 @@
-
 "use client"
 import { useAuth } from "@/providers/auth-provider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { MessageSquare, Lightbulb, Route, FileText, ArrowRight } from "lucide-react";
+import { MessageSquare, Lightbulb, Route, FileText, ArrowRight, Users, Target } from "lucide-react";
 
 const features = [
     {
@@ -31,6 +30,18 @@ const features = [
       title: "Resume Support",
       description: "Get AI-driven feedback to optimize and improve your resume.",
     },
+    {
+      href: "/dashboard/networking",
+      icon: <Users className="h-8 w-8 text-primary" />,
+      title: "Networking Assistant",
+      description: "Find professionals and get help with outreach messages.",
+    },
+    {
+      href: "/dashboard/goals",
+      icon: <Target className="h-8 w-8 text-primary" />,
+      title: "Goal Setting",
+      description: "Set and track SMART goals to advance your career.",
+    },
   ];
 
 export default function DashboardPage() {
@@ -48,7 +59,7 @@ export default function DashboardPage() {
                 </p>
             </div>
             
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {features.map((feature, i) => (
                     <Card 
                         key={feature.title} 
