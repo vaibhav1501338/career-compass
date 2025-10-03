@@ -19,12 +19,12 @@ export default function RoadmapDetailsPage() {
   const { toast } = useToast();
 
   useEffect(() => {
-    const slug = params.slug;
+    const slug = params?.slug;
     if (slug && typeof slug === 'string') {
       const title = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
       setCareerTitle(title);
     }
-  }, [params.slug]);
+  }, [params]);
 
   useEffect(() => {
     if (!careerTitle) return;
