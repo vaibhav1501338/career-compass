@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Lightbulb, Route, FileText, ArrowRight, Users, Target, Mail, Briefcase, Columns } from "lucide-react";
+import Image from "next/image";
 
 const features = [
     {
@@ -69,20 +70,31 @@ export default function DashboardPage() {
 
     return (
         <div className="space-y-8 animate-fade-in-up">
-            <div>
-                <h1 className="font-headline text-3xl font-bold tracking-tight md:text-4xl">
-                    Welcome back, {displayName}!
-                </h1>
-                <p className="mt-2 text-lg text-muted-foreground">
-                    Ready to take the next step in your career journey?
-                </p>
-            </div>
+             <Card className="relative p-8 bg-gradient-to-tr from-primary to-purple-400 text-primary-foreground overflow-hidden">
+                <div className="relative z-10">
+                    <p className="text-sm font-medium mb-2">{new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    <h1 className="font-headline text-3xl font-bold tracking-tight md:text-4xl">
+                        Welcome back, {displayName}!
+                    </h1>
+                    <p className="mt-2 text-lg text-primary-foreground/80">
+                        Always stay updated in your student portal.
+                    </p>
+                </div>
+                <Image 
+                    src="https://picsum.photos/seed/student/500/300"
+                    alt="3D illustration of a student character"
+                    width={300}
+                    height={300}
+                    className="absolute bottom-0 right-0 z-0 opacity-80"
+                    data-ai-hint="student character 3d"
+                />
+            </Card>
             
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {features.map((feature, i) => (
                     <Card 
                         key={feature.title} 
-                        className="group flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-card/80 hover:bg-card animate-fade-in-up"
+                        className="group flex flex-col transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 bg-card animate-fade-in-up"
                         style={{ animationDelay: `${i * 100}ms` }}
                     >
                         <CardHeader>

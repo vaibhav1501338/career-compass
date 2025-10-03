@@ -18,7 +18,7 @@ import { Logo } from "@/components/logo";
 import { SidebarNav } from "@/components/dashboard/sidebar-nav";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
+import { LogOut, GraduationCap } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -37,18 +37,19 @@ function DashboardSidebar() {
 
     return (
         <Sidebar>
-            <div className="relative flex h-full w-full flex-col">
-                <SidebarHeader>
-                    <Logo />
-                    <SidebarToggle />
+            <div className="relative flex h-full w-full flex-col p-2">
+                <SidebarHeader className="p-0 mb-4">
+                    <div className="flex items-center gap-2 bg-primary text-primary-foreground rounded-lg p-4">
+                        <GraduationCap className="h-10 w-10" />
+                    </div>
                 </SidebarHeader>
-                <SidebarContent className="p-2">
+                <SidebarContent className="p-0 flex-grow">
                     <SidebarNav />
                 </SidebarContent>
-                <SidebarFooter>
-                    <SidebarMenuButton variant="ghost" onClick={handleSignOut} className="w-full justify-start" tooltip="Logout">
+                <SidebarFooter className="p-0">
+                    <SidebarMenuButton variant="ghost" onClick={handleSignOut} className="w-full justify-start text-white hover:text-white hover:bg-white/10" tooltip="Logout">
                         <LogOut />
-                        <span>Logout</span>
+                        <span className="group-data-[state=collapsed]:hidden">Logout</span>
                     </SidebarMenuButton>
                 </SidebarFooter>
             </div>
@@ -85,14 +86,12 @@ export default function DashboardLayout({
   }
 
   return (
-    <SidebarProvider defaultOpen={false}>
+    <SidebarProvider defaultOpen={true}>
         <DashboardSidebar />
       <div className="flex flex-1 flex-col">
         <DashboardHeader />
-        <main className="flex-1 p-4 md:p-6 lg:p-8 bg-muted/30">{children}</main>
+        <main className="flex-1 p-4 md:p-6 lg:p-8">{children}</main>
       </div>
     </SidebarProvider>
   );
 }
-
-    

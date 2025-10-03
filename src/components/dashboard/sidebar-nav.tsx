@@ -90,12 +90,13 @@ export function SidebarNav() {
         <SidebarMenuItem key={item.href}>
           <SidebarMenuButton
             asChild
+            size="lg"
             isActive={pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(item.href))}
             tooltip={item.label}
           >
             <Link href={item.href}>
               {item.icon}
-              <span>{item.label}</span>
+              <span className="group-data-[state=collapsed]:hidden">{item.label}</span>
             </Link>
           </SidebarMenuButton>
         </SidebarMenuItem>
