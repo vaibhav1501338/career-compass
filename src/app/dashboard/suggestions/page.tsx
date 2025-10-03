@@ -19,16 +19,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { personalizedCareerSuggestions } from "@/ai/flows/personalized-career-suggestions";
-import { Lightbulb, Loader2 } from "lucide-react";
+import { refineDescription } from "@/ai/flows/refine-profile-description";
+import { Lightbulb, Loader2, WandSparkles } from "lucide-react";
 
 const formSchema = z.object({
   profile: z
     .string()
-    .min(20, { message: "Please tell us a bit more about yourself." }),
+    .min(10, { message: "Please tell us a bit more about yourself." }),
 });
 
 export default function SuggestionsPage() {
   const [loading, setLoading] = useState(false);
+  const [refining, setRefining] = useState(false);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const { toast } = useToast();
 
@@ -36,6 +38,42 @@ export default function SuggestionsPage() {
     resolver: zodResolver(formSchema),
     defaultValues: { profile: "" },
   });
+
+  const profileValue = form.watch("profile");
+
+  async function handleRefine() {
+    const currentProfile = form.getValues("profile");
+    if (!currentProfile.trim()) {
+      toast({
+        variant: "destructive",
+        title: "Description is empty",
+        description: "Please write something about yourself before refining.",
+      });
+      return;
+    }
+
+    setRefining(true);
+    try {
+      const result = await refineDescription({ description: currentProfile });
+      if (result.refinedDescription) {
+        form.setValue("profile", result.refinedDescription);
+        toast({
+            title: "Description Refined",
+            description: "Your profile description has been enhanced by AI.",
+        });
+      } else {
+        throw new Error("AI did not provide a refined description.");
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Refinement Failed",
+        description: "Could not refine the description. Please try again.",
+      });
+    } finally {
+      setRefining(false);
+    }
+  }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true);
@@ -102,16 +140,31 @@ export default function SuggestionsPage() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" disabled={loading}>
-                {loading ? (
+              <div className="flex flex-wrap gap-2">
+                <Button type="submit" disabled={loading || refining}>
+                  {loading ? (
+                      <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Generating...
+                      </>
+                  ) : (
+                    "Get Suggestions"
+                  )}
+                </Button>
+                <Button type="button" variant="outline" onClick={handleRefine} disabled={loading || refining || !profileValue.trim()}>
+                   {refining ? (
+                      <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Refining...
+                      </>
+                  ) : (
                     <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Generating...
+                        <WandSparkles className="mr-2 h-4 w-4" />
+                        Refine with AI
                     </>
-                ) : (
-                  "Get Suggestions"
-                )}
-              </Button>
+                  )}
+                </Button>
+              </div>
             </form>
           </Form>
         </CardContent>
