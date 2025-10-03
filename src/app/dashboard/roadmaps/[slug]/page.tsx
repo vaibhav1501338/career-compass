@@ -1,6 +1,8 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import { generateCareerRoadmap, type GenerateCareerRoadmapOutput } from '@/ai/flows/generate-career-roadmap';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -9,15 +11,17 @@ import Link from 'next/link';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-export default function RoadmapDetailsPage({ params }: { params: { slug: string } }) {
+export default function RoadmapDetailsPage() {
+  const params = useParams();
   const [roadmap, setRoadmap] = useState<GenerateCareerRoadmapOutput | null>(null);
   const [loading, setLoading] = useState(true);
   const [careerTitle, setCareerTitle] = useState('');
   const { toast } = useToast();
 
   useEffect(() => {
-    if (params.slug) {
-      const title = params.slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    const slug = params.slug;
+    if (slug && typeof slug === 'string') {
+      const title = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
       setCareerTitle(title);
     }
   }, [params.slug]);
