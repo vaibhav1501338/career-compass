@@ -1,9 +1,10 @@
+
 "use client"
 import { useAuth } from "@/providers/auth-provider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { MessageSquare, Lightbulb, Route, FileText, ArrowRight, Users, Target } from "lucide-react";
+import { MessageSquare, Lightbulb, Route, FileText, ArrowRight, Users, Target, Mail } from "lucide-react";
 
 const features = [
     {
@@ -29,6 +30,12 @@ const features = [
       icon: <FileText className="h-8 w-8 text-primary" />,
       title: "Resume Support",
       description: "Get AI-driven feedback to optimize and improve your resume.",
+    },
+    {
+      href: "/dashboard/cover-letter",
+      icon: <Mail className="h-8 w-8 text-primary" />,
+      title: "Cover Letter Builder",
+      description: "Create compelling, AI-assisted cover letters for job applications.",
     },
     {
       href: "/dashboard/networking",

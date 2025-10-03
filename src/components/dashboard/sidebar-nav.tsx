@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -17,6 +18,7 @@ import {
   Sparkles,
   Users,
   Target,
+  Mail,
 } from "lucide-react";
 
 const navItems = [
@@ -44,6 +46,11 @@ const navItems = [
     href: "/dashboard/resume",
     icon: <FileText />,
     label: "Resume",
+  },
+  {
+    href: "/dashboard/cover-letter",
+    icon: <Mail />,
+    label: "Cover Letter",
   },
   {
     href: "/dashboard/networking",
