@@ -10,8 +10,8 @@ import {
   SidebarHeader,
   SidebarContent,
   SidebarFooter,
-  useSidebar,
   SidebarMenuButton,
+  SidebarToggle,
 } from "@/components/ui/sidebar";
 import { Logo } from "@/components/logo";
 import { SidebarNav } from "@/components/dashboard/sidebar-nav";
@@ -33,9 +33,10 @@ function DashboardSidebar() {
 
     return (
         <Sidebar>
-            <div className="relative flex h-full w-full flex-col p-2">
+            <div className="relative flex h-full w-full flex-col">
                 <SidebarHeader>
                     <Logo className="text-white hover:text-white/90" />
+                    <SidebarToggle className="ml-auto" />
                 </SidebarHeader>
                 <SidebarContent className="p-0 flex-grow mt-4">
                     <SidebarNav />
