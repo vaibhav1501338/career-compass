@@ -91,7 +91,7 @@ export default function DashboardLayout({
   }
 
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={true}>
         <DashboardSidebar />
       <div className="flex flex-1 flex-col">
         <DashboardHeader />

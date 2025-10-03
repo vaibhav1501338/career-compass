@@ -217,9 +217,7 @@ const Sidebar = React.forwardRef<
       <div
         ref={ref}
         className={cn(
-          "group peer hidden md:block",
-          "group-data-[state=collapsed]:group-data-[collapsible=icon]:hover:w-[var(--sidebar-width)]",
-          "group-data-[state=collapsed]:group-data-[collapsible=icon]:hover:shadow-lg"
+          "group peer hidden md:block"
         )}
         data-state={state}
         data-collapsible={state === "collapsed" ? collapsible : ""}
@@ -250,7 +248,6 @@ const Sidebar = React.forwardRef<
               ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]"
               : "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l",
             "group-data-[state=collapsed]:group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]",
-            "group-data-[state=collapsed]:group-hover/sidebar-wrapper:w-[var(--sidebar-width)]",
             className
           )}
           {...props}
@@ -390,7 +387,7 @@ const SidebarFooter = React.forwardRef<
     <div
       ref={ref}
       data-sidebar="footer"
-      className={cn("flex flex-col gap-2 p-2", className)}
+      className={cn("flex flex-col gap-2 p-2 mt-auto", className)}
       {...props}
     />
   )
@@ -587,28 +584,22 @@ const SidebarMenuButton = React.forwardRef<
       >
         {children}
       </Comp>
-    );
+    )
 
     if (!tooltip) {
-      return button;
+      return button
     }
-
-    if (typeof tooltip === "string") {
-      tooltip = {
-        children: tooltip,
-      }
-    }
+    
+    const content = typeof tooltip === 'string' ? { children: tooltip } : tooltip;
 
     return (
       <Tooltip>
-        <TooltipTrigger asChild>
-          {button}
-        </TooltipTrigger>
+        <TooltipTrigger asChild>{button}</TooltipTrigger>
         <TooltipContent
           side="right"
           align="center"
           hidden={(state !== "collapsed" && !isMobile)}
-          {...tooltip}
+          {...content}
         />
       </Tooltip>
     )
