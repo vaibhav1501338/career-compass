@@ -41,12 +41,17 @@ const aiCareerChatPrompt = ai.definePrompt({
 
   Chat History:
   {{#each chatHistory}}
-  {{#if (eq role \"user\")}}Student: {{content}}
+  {{#if (eq role "user")}}Student: {{content}}
   {{else}}AI Mentor: {{content}}{{/if}}
   {{/each}}
 
   Student: {{{message}}}
   AI Mentor:`,
+  template: {
+    helpers: {
+        eq: (a, b) => a === b,
+    }
+  }
 });
 
 const aiCareerChatFlow = ai.defineFlow(
