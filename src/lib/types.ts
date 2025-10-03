@@ -42,3 +42,18 @@ export interface Resume {
     feedback: string;
     uploadedAt: Timestamp;
 }
+
+export type ApplicationStatus = "Wishlist" | "Applied" | "Interviewing" | "Offer" | "Rejected";
+
+export interface JobApplication {
+    id?: string;
+    userId: string;
+    jobTitle: string;
+    companyName: string;
+    status: ApplicationStatus;
+    dateApplied?: Timestamp;
+    url?: string;
+    notes?: string;
+    createdAt: Timestamp;
+    updatedAt: Timestamp;
+}

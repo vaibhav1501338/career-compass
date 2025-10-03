@@ -20,6 +20,7 @@ import {
   Target,
   Mail,
   Briefcase,
+  Columns,
 } from "lucide-react";
 
 const navItems = [
@@ -53,10 +54,15 @@ const navItems = [
     icon: <Mail />,
     label: "Cover Letter",
   },
-    {
+  {
     href: "/dashboard/jobs",
     icon: <Briefcase />,
     label: "Job Search",
+  },
+  {
+    href: "/dashboard/tracker",
+    icon: <Columns />,
+    label: "Tracker",
   },
   {
     href: "/dashboard/networking",
