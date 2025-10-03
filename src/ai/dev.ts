@@ -10,4 +10,5 @@ import '@/ai/flows/refine-profile-description.ts';
 import '@/ai/flows/networking-assistant.ts';
 import '@/ai/flows/goal-setting-assistant.ts';
 import '@/ai/flows/generate-cover-letter.ts';
+import '@/ai/flows/correct-resume-format.ts';
 
