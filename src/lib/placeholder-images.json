@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "landing-hero",
-      "description": "A person looking at a digital map with multiple paths, symbolizing career choices.",
-      "imageUrl": "https://images.unsplash.com/photo-1539992190939-08f22d7ebaad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjYXJlZXIlMjBjaG9pY2V8ZW58MHx8fHwxNzU5NDI5MjQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "career choice"
+      "description": "A person holding a compass, symbolizing guidance and career direction.",
+      "imageUrl": "https://images.unsplash.com/photo-1508921340878-ba53e1f416c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb21wYXNzfGVufDB8fHx8MTc1OTQ5MjE3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "compass guidance"
     },
     {
       "id": "dashboard-chat",
