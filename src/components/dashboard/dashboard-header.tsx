@@ -1,5 +1,5 @@
 
-import { SidebarTrigger, SidebarToggle } from "@/components/ui/sidebar";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { UserNav } from "@/components/dashboard/user-nav";
 import { Logo } from "@/components/logo";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,6 @@ export function DashboardHeader() {
     <header className="sticky top-0 z-10 flex h-20 items-center gap-4 border-b bg-transparent px-4 backdrop-blur-sm md:px-6">
       <div className="flex items-center gap-2">
         <SidebarTrigger className="md:hidden" />
-        <SidebarToggle className="hidden md:flex" />
       </div>
 
       <div className="flex w-full items-center justify-end gap-4">
