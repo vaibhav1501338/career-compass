@@ -11,6 +11,7 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarToggle,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { Logo } from "@/components/logo";
 import { SidebarNav } from "@/components/dashboard/sidebar-nav";
@@ -20,6 +21,46 @@ import { LogOut } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
+
+
+function DashboardSidebar() {
+    const { state } = useSidebar();
+    const { user } = useAuth();
+    const router = useRouter();
+
+    const handleSignOut = async () => {
+        await signOut(auth);
+        router.push("/");
+      };
+
+    return (
+        <Sidebar>
+            <div className="relative flex h-full w-full flex-col">
+                <SidebarHeader>
+                    <Logo />
+                </SidebarHeader>
+                <SidebarContent className="p-2">
+                    <SidebarNav />
+                </SidebarContent>
+                <SidebarFooter>
+                    <Button variant="ghost" onClick={handleSignOut} className="w-full justify-start">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Logout</span>
+                    </Button>
+                </SidebarFooter>
+                <div
+                    className={cn(
+                        "absolute right-0 top-1/2 z-20 -translate-y-1/2 translate-x-1/2",
+                        "rounded-full border bg-background p-0.5"
+                    )}
+                >
+                    <SidebarToggle />
+                </div>
+            </div>
+      </Sidebar>
+    );
+}
 
 export default function DashboardLayout({
   children,
@@ -34,11 +75,6 @@ export default function DashboardLayout({
       router.replace("/login");
     }
   }, [user, loading, router]);
-
-  const handleSignOut = async () => {
-    await signOut(auth);
-    router.push("/");
-  };
 
   if (loading || !user) {
     return (
@@ -56,21 +92,7 @@ export default function DashboardLayout({
 
   return (
     <SidebarProvider>
-      <Sidebar>
-        <SidebarHeader>
-          <Logo />
-          <SidebarToggle />
-        </SidebarHeader>
-        <SidebarContent className="p-2">
-          <SidebarNav />
-        </SidebarContent>
-        <SidebarFooter>
-          <Button variant="ghost" onClick={handleSignOut} className="w-full justify-start">
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>Logout</span>
-          </Button>
-        </SidebarFooter>
-      </Sidebar>
+        <DashboardSidebar />
       <div className="flex flex-1 flex-col">
         <DashboardHeader />
         <main className="flex-1 p-4 md:p-6 lg:p-8 bg-muted/30">{children}</main>
@@ -78,3 +100,5 @@ export default function DashboardLayout({
     </SidebarProvider>
   );
 }
+
+    

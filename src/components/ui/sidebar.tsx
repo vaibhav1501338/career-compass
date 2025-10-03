@@ -4,7 +4,7 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { VariantProps, cva } from "class-variance-authority"
-import { PanelLeft, PanelRight } from "lucide-react"
+import { ChevronLeft, PanelLeft, PanelRight } from "lucide-react"
 
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
@@ -301,17 +301,19 @@ const SidebarToggle = React.forwardRef<
       data-sidebar="toggle"
       variant="ghost"
       size="icon"
-      className={cn(
-        "hidden h-7 w-7 transition-all group-data-[state=collapsed]:group-data-[collapsible=icon]:flex md:flex",
-        className
-      )}
+      className={cn("md:flex h-7 w-7", className)}
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
       }}
       {...props}
     >
-      {state === "expanded" ? <PanelLeft /> : <PanelRight />}
+      <ChevronLeft
+        className={cn(
+          "h-4 w-4 transition-transform",
+          state === "collapsed" && "rotate-180"
+        )}
+      />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )
@@ -768,3 +770,5 @@ export {
   SidebarToggle,
   useSidebar,
 }
+
+    
