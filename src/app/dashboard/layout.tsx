@@ -10,7 +10,6 @@ import {
   SidebarHeader,
   SidebarContent,
   SidebarFooter,
-  SidebarToggle,
   useSidebar,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
@@ -18,15 +17,12 @@ import { Logo } from "@/components/logo";
 import { SidebarNav } from "@/components/dashboard/sidebar-nav";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { Button } from "@/components/ui/button";
-import { LogOut, GraduationCap } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/lib/utils";
-
 
 function DashboardSidebar() {
-    const { state } = useSidebar();
     const { user } = useAuth();
     const router = useRouter();
 
@@ -38,12 +34,10 @@ function DashboardSidebar() {
     return (
         <Sidebar>
             <div className="relative flex h-full w-full flex-col p-2">
-                <SidebarHeader className="p-0 mb-4">
-                    <div className="flex items-center gap-2 bg-primary text-primary-foreground rounded-lg p-4">
-                        <GraduationCap className="h-10 w-10" />
-                    </div>
+                <SidebarHeader>
+                    <Logo className="text-white hover:text-white/90" />
                 </SidebarHeader>
-                <SidebarContent className="p-0 flex-grow">
+                <SidebarContent className="p-0 flex-grow mt-4">
                     <SidebarNav />
                 </SidebarContent>
                 <SidebarFooter className="p-0">
@@ -86,7 +80,7 @@ export default function DashboardLayout({
   }
 
   return (
-    <SidebarProvider defaultOpen={true}>
+    <SidebarProvider>
         <DashboardSidebar />
       <div className="flex flex-1 flex-col">
         <DashboardHeader />
