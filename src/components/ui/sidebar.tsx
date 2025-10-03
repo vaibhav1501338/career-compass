@@ -216,7 +216,8 @@ const Sidebar = React.forwardRef<
     return (
       <div
         ref={ref}
-        className={cn("group peer hidden md:block text-sidebar-foreground",
+        className={cn(
+          "group peer hidden md:block",
           "group-data-[state=collapsed]:group-data-[collapsible=icon]:hover:w-[var(--sidebar-width)]",
           "group-data-[state=collapsed]:group-data-[collapsible=icon]:hover:shadow-lg"
         )}
@@ -231,7 +232,7 @@ const Sidebar = React.forwardRef<
             "duration-200 relative h-svh bg-transparent transition-[width] ease-linear",
             "group-data-[collapsible=offcanvas]:w-0",
             "group-data-[state=expanded]:w-[var(--sidebar-width)]",
-            "group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]",
+            "group-data-[collapsible=icon]:w-[--sidebar-width-icon]",
             variant === "floating" || variant === "inset"
               ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4))]"
               : "group-data-[collapsible=icon]:w-[--sidebar-width-icon]",
@@ -256,7 +257,7 @@ const Sidebar = React.forwardRef<
         >
           <div
             data-sidebar="sidebar"
-            className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
+            className="flex h-full w-full flex-col bg-sidebar text-sidebar-foreground group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
           >
             {children}
           </div>
@@ -575,7 +576,7 @@ const SidebarMenuButton = React.forwardRef<
     const Comp = asChild ? Slot : "button"
     const { isMobile, state } = useSidebar()
     
-    const buttonChildren = (
+    const button = (
       <Comp
         ref={ref}
         data-sidebar="menu-button"
@@ -591,16 +592,7 @@ const SidebarMenuButton = React.forwardRef<
     );
 
     if (!tooltip) {
-      return (
-        <Comp
-          ref={ref}
-          data-sidebar="menu-button"
-          data-size={size}
-          data-active={isActive}
-          className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
-          {...props}
-        />
-      );
+      return button;
     }
 
     if (typeof tooltip === "string") {
@@ -797,3 +789,5 @@ export {
   SidebarToggle,
   useSidebar,
 }
+
+    
