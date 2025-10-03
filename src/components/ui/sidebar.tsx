@@ -586,8 +586,6 @@ const SidebarMenuButton = React.forwardRef<
         {...props}
       >
         {children}
-        <span className="group-data-[state=collapsed]:group-hover/sidebar-wrapper:flex group-data-[state=collapsed]:group-data-[collapsible=icon]:hidden">
-        </span>
       </Comp>
     );
 
@@ -603,7 +601,9 @@ const SidebarMenuButton = React.forwardRef<
 
     return (
       <Tooltip>
-        <TooltipTrigger asChild>{button}</TooltipTrigger>
+        <TooltipTrigger asChild>
+          {button}
+        </TooltipTrigger>
         <TooltipContent
           side="right"
           align="center"
