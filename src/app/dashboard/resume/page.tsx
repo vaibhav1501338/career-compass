@@ -123,7 +123,7 @@ export default function ResumePage() {
         <CardHeader>
           <CardTitle className="font-headline">Upload Your Resume</CardTitle>
           <CardDescription>
-            Upload your resume (PDF, DOCX) to get instant feedback. Max file size: 4MB.
+            Upload your resume (PDF, DOCX, PNG, JPG, WEBP) to get instant feedback. Max file size: 4MB.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -135,7 +135,7 @@ export default function ResumePage() {
                     type="file"
                     ref={fileInputRef}
                     onChange={handleFileChange}
-                    accept=".pdf,.doc,.docx"
+                    accept=".pdf,.doc,.docx,.png,.jpeg,.jpg,.webp"
                     className="hidden"
                 />
                 <Button variant="outline" onClick={() => fileInputRef.current?.click()}>
