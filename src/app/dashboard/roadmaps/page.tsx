@@ -1,7 +1,9 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Route, BookOpen, Code, Briefcase } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Route, BookOpen, Code, Briefcase, ArrowRight } from "lucide-react";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Career Roadmaps | Career Compass",
@@ -12,23 +14,27 @@ export const metadata: Metadata = {
 const sampleRoadmaps = [
     {
         title: "Frontend Developer",
+        slug: "frontend-developer",
         icon: <Code className="h-8 w-8 text-primary" />,
-        description: "Learn HTML, CSS, JavaScript, and a modern framework like React to build beautiful user interfaces."
+        description: "Learn to build beautiful and interactive user interfaces for the web."
     },
     {
         title: "Data Scientist",
+        slug: "data-scientist",
         icon: <BookOpen className="h-8 w-8 text-primary" />,
-        description: "Master Python, SQL, statistics, and machine learning to extract insights from data."
+        description: "Master skills to extract insights and build predictive models from data."
     },
     {
         title: "Product Manager",
+        slug: "product-manager",
         icon: <Briefcase className="h-8 w-8 text-primary" />,
-        description: "Develop skills in market research, user experience, and project management to guide products to success."
+        description: "Guide products from concept to launch by connecting user needs with business goals."
     },
     {
         title: "DevOps Engineer",
+        slug: "devops-engineer",
         icon: <Route className="h-8 w-8 text-primary" />,
-        description: "Combine software development and IT operations to shorten the systems development life cycle."
+        description: "Bridge development and operations to build and maintain scalable infrastructure."
     }
 ];
 
@@ -46,16 +52,19 @@ export default function RoadmapsPage() {
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {sampleRoadmaps.map(roadmap => (
-            <Card key={roadmap.title} className="hover:shadow-md transition-shadow">
-                <CardHeader className="flex flex-row items-center gap-4">
+            <Card key={roadmap.title} className="flex flex-col transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
+                <CardHeader className="flex flex-row items-start gap-4">
                     {roadmap.icon}
-                    <div>
-                        <CardTitle className="font-headline">{roadmap.title}</CardTitle>
-                        <CardDescription className="mt-1">Coming Soon</CardDescription>
-                    </div>
+                    <CardTitle className="font-headline text-xl">{roadmap.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-grow flex flex-col justify-between">
                     <p className="text-muted-foreground">{roadmap.description}</p>
+                    <Button variant="outline" asChild className="mt-4 w-fit">
+                        <Link href={`/dashboard/roadmaps/${roadmap.slug}`}>
+                            Generate Roadmap
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                    </Button>
                 </CardContent>
             </Card>
         ))}
