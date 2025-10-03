@@ -11,11 +11,10 @@ import Link from "next/link";
 import {
   LayoutGrid,
   MessageCircle,
-  Lightbulb,
+  Sparkles,
   Route,
   FileText,
   User,
-  Sparkles,
   Users,
   Target,
   Mail,
@@ -81,12 +80,16 @@ const navItems = [
   },
 ];
 
-export function SidebarNav() {
+export function SidebarNav({ searchQuery }: { searchQuery: string }) {
   const pathname = usePathname();
+
+  const filteredNavItems = navItems.filter((item) =>
+    item.label.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <SidebarMenu>
-      {navItems.map((item) => (
+      {filteredNavItems.map((item) => (
         <SidebarMenuItem key={item.href}>
           <SidebarMenuButton
             asChild

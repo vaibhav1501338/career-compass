@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "@/providers/auth-provider";
 import { useRouter } from "next/navigation";
 import {
@@ -11,7 +11,6 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarMenuButton,
-  SidebarToggle,
 } from "@/components/ui/sidebar";
 import { Logo } from "@/components/logo";
 import { SidebarNav } from "@/components/dashboard/sidebar-nav";
@@ -22,7 +21,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { Skeleton } from "@/components/ui/skeleton";
 
-function DashboardSidebar() {
+function DashboardSidebar({ searchQuery }: { searchQuery: string }) {
     const { user } = useAuth();
     const router = useRouter();
 
@@ -36,10 +35,9 @@ function DashboardSidebar() {
             <div className="relative flex h-full w-full flex-col">
                 <SidebarHeader>
                     <Logo className="text-white hover:text-white/90" />
-                    <SidebarToggle className="ml-auto" />
                 </SidebarHeader>
                 <SidebarContent className="p-0 flex-grow mt-4">
-                    <SidebarNav />
+                    <SidebarNav searchQuery={searchQuery} />
                 </SidebarContent>
                 <SidebarFooter className="p-0">
                     <SidebarMenuButton variant="ghost" onClick={handleSignOut} className="w-full justify-start text-white hover:text-white hover:bg-white/10" tooltip="Logout">
@@ -59,6 +57,7 @@ export default function DashboardLayout({
 }) {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     if (!loading && !user) {
@@ -82,9 +81,9 @@ export default function DashboardLayout({
 
   return (
     <SidebarProvider>
-        <DashboardSidebar />
+        <DashboardSidebar searchQuery={searchQuery} />
       <div className="flex flex-1 flex-col">
-        <DashboardHeader />
+        <DashboardHeader searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <main className="flex-1 p-4 md:p-6 lg:p-8">{children}</main>
       </div>
     </SidebarProvider>
