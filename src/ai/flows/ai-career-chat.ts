@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -41,17 +42,11 @@ const aiCareerChatPrompt = ai.definePrompt({
 
   Chat History:
   {{#each chatHistory}}
-  {{#if (eq role "user")}}Student: {{content}}
-  {{else}}AI Mentor: {{content}}{{/if}}
+  {{role}}: {{content}}
   {{/each}}
 
-  Student: {{{message}}}
-  AI Mentor:`,
-  template: {
-    helpers: {
-        eq: (a, b) => a === b,
-    }
-  }
+  user: {{{message}}}
+  assistant:`,
 });
 
 const aiCareerChatFlow = ai.defineFlow(
