@@ -58,7 +58,7 @@ const SidebarProvider = React.forwardRef<
 >(
   (
     {
-      defaultOpen = true,
+      defaultOpen = false,
       open: openProp,
       onOpenChange: setOpenProp,
       className,
@@ -240,6 +240,7 @@ const Sidebar = React.forwardRef<
           className={cn(
             "duration-200 fixed inset-y-0 z-10 hidden h-svh transition-[left,right,width] ease-linear md:flex",
             "group-data-[state=expanded]:w-[var(--sidebar-width)]",
+            "group-data-[state=collapsed]:group-hover/sidebar-wrapper:w-[var(--sidebar-width)]",
             side === "left"
               ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
               : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
@@ -782,5 +783,7 @@ export {
   SidebarToggle,
   useSidebar,
 }
+
+    
 
     
