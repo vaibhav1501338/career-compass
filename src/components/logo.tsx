@@ -13,7 +13,8 @@ export function Logo({ className }: { className?: string }) {
       )}
     >
       <Compass className="h-6 w-6 text-primary" />
-      <span className="font-headline text-lg font-bold">Career Compass</span>
+      <span className="font-headline text-lg font-bold group-data-[state=collapsed]:hidden group-data-[state=collapsed]:group-hover/sidebar:block">Career Compass</span>
     </Link>
   );
 }
+
