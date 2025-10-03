@@ -42,10 +42,10 @@ const features = [
 export default function LandingPage() {
   const heroImage = placeHolderImages.find(p => p.id === "landing-hero");
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-background">
       <header className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <Logo />
-        <nav className="flex items-center gap-4">
+        <nav className="flex items-center gap-2">
           <Button variant="ghost" asChild>
             <Link href="/login">Log In</Link>
           </Button>
@@ -79,19 +79,19 @@ export default function LandingPage() {
               <Button size="lg" asChild>
                 <Link href="/signup">Get Started for Free</Link>
               </Button>
-              <Button size="lg" variant="secondary" asChild>
+              <Button size="lg" variant="outline" asChild>
                 <Link href="#features">Learn More</Link>
               </Button>
             </div>
           </div>
         </section>
-        <section id="features" className="w-full bg-background py-20 md:py-32">
+        <section id="features" className="w-full bg-muted/40 py-20 md:py-32">
           <div className="container mx-auto px-4 md:px-6">
             <div className="mx-auto mb-16 max-w-3xl text-center">
               <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl">
                 A Smarter Way to Navigate Your Career
               </h2>
-              <p className="mt-4 text-lg text-foreground/80">
+              <p className="mt-4 text-lg text-muted-foreground">
                 Career Compass provides a suite of AI tools to help you every
                 step of the way.
               </p>
@@ -100,7 +100,7 @@ export default function LandingPage() {
               {features.map((feature) => (
                 <Card
                   key={feature.title}
-                  className="transform-gpu transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl"
+                  className="transform-gpu transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl bg-card/50 backdrop-blur-sm"
                 >
                   <CardHeader className="items-center">
                     {feature.icon}
@@ -109,7 +109,7 @@ export default function LandingPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-center text-foreground/80">
+                    <p className="text-center text-muted-foreground">
                       {feature.description}
                     </p>
                   </CardContent>
@@ -125,7 +125,7 @@ export default function LandingPage() {
               <h2 className="font-headline text-3xl font-bold tracking-tighter md:text-4xl/tight">
                 Ready to Chart Your Course?
               </h2>
-              <p className="mx-auto max-w-[600px] text-foreground/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Join thousands of students and professionals who are building their future with Career Compass.
               </p>
             </div>
@@ -133,29 +133,29 @@ export default function LandingPage() {
               <Button size="lg" className="w-full" asChild>
                 <Link href="/signup">Sign Up Now</Link>
               </Button>
-              <p className="text-xs text-foreground/60">
+              <p className="text-xs text-muted-foreground">
                 Start for free. No credit card required.
               </p>
             </div>
           </div>
         </section>
       </main>
-      <footer className="w-full bg-muted py-6">
-        <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 md:flex-row md:px-6">
+      <footer className="w-full bg-background border-t">
+        <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-6 md:flex-row md:px-6">
           <div className="flex items-center gap-2">
             <Logo />
-            <span className="text-sm text-foreground/80">
+            <span className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Career Compass. All rights reserved.
             </span>
           </div>
           <div className="flex gap-4">
-            <Link href="#" className="text-foreground/80 hover:text-primary">
+            <Link href="#" className="text-muted-foreground hover:text-primary">
               <Twitter className="h-5 w-5" />
             </Link>
-            <Link href="#" className="text-foreground/80 hover:text-primary">
+            <Link href="#" className="text-muted-foreground hover:text-primary">
               <Github className="h-5 w-5" />
             </Link>
-            <Link href="#" className="text-foreground/80 hover:text-primary">
+            <Link href="#" className="text-muted-foreground hover:text-primary">
               <Linkedin className="h-5 w-5" />
             </Link>
           </div>
