@@ -12,7 +12,7 @@ export function Logo({ className }: { className?: string }) {
         className
       )}
     >
-      <Compass className="h-6 w-6 text-primary" />
+      <Compass className="h-6 w-6 text-white" />
       <span className="font-headline text-lg font-bold group-data-[state=collapsed]:hidden">Career Compass</span>
     </Link>
   );
