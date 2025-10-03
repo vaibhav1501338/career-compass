@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -40,14 +41,55 @@ const prompt = ai.definePrompt({
   output: { schema: CorrectResumeFormatOutputSchema },
   prompt: `You are an expert resume editor. A user has provided a resume with formatting issues.
   
-  Your task is to parse the content of the resume, restructure it into a professional format, and correct any glaring grammatical errors.
+  Your task is to parse the content of the resume and restructure it into a professional format based on the following template. Correct any glaring grammatical errors you find. The output should be a single, well-formatted block of text that represents the corrected resume.
+
+  **Resume Structure Template:**
+
+  **[Full Name]**
+  [Address] | [Phone Number] | [Email]
+
+  ---
+
+  **Objective**
+  [A concise one-sentence objective related to the job the user is seeking.]
+
+  ---
+
+  **Education**
+  **[School Name]**, [City, State]
+  *Expected Graduation: [Month, Year]*
+  GPA: [Your GPA]
+
+  ---
+
+  **Experience**
+  **[Company/Organization Name]**, [City, State]
+  *[Job Title]* | *[Start Date] – [End Date]*
+  - [Responsibility or accomplishment 1]
+  - [Responsibility or accomplishment 2]
+  - [Responsibility or accomplishment 3]
+
+  ---
+
+  **Skills**
+  - [Skill 1]
+  - [Skill 2]
+  - [Skill 3]
+
+  ---
+
+  **Awards and Honors**
+  - [Award 1]
+  - [Award 2]
+
+  ---
   
-  The output should be a single, well-formatted block of text that represents the corrected resume. Use clear headings (e.g., "Experience", "Education", "Skills").
-  
+  Now, analyze the following resume content and reformat it according to the template above.
+
   Original Resume:
   {{media url=resumeDataUri}}
   
-  Provide the corrected content.`,
+  Provide the corrected content as a single block of text.`,
 });
 
 const correctResumeFormatFlow = ai.defineFlow(
