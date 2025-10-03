@@ -50,9 +50,11 @@ export default function DashboardPage() {
             
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {features.map((feature) => (
-                    <Card key={feature.title} className="flex flex-col transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 bg-card/80">
+                    <Card key={feature.title} className="group flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-card/80 hover:bg-card">
                         <CardHeader>
-                            {feature.icon}
+                            <div className="rounded-lg bg-primary/10 p-3 w-fit transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">
+                                {feature.icon}
+                            </div>
                             <CardTitle className="font-headline mt-4 text-xl">{feature.title}</CardTitle>
                         </CardHeader>
                         <CardContent className="flex-grow flex flex-col justify-between">
@@ -60,7 +62,7 @@ export default function DashboardPage() {
                             <Button variant="link" asChild className="mt-4 -ml-4 justify-start p-4 text-primary">
                                 <Link href={feature.href}>
                                     Get Started
-                                    <ArrowRight className="ml-2 h-4 w-4" />
+                                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                                 </Link>
                             </Button>
                         </CardContent>

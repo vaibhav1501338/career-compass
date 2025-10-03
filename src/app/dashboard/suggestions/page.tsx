@@ -20,7 +20,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { personalizedCareerSuggestions } from "@/ai/flows/personalized-career-suggestions";
 import { refineDescription } from "@/ai/flows/refine-profile-description";
-import { Lightbulb, Loader2, WandSparkles } from "lucide-react";
+import { Lightbulb, Loader2, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 const formSchema = z.object({
   profile: z
@@ -148,7 +149,10 @@ export default function SuggestionsPage() {
                           Generating...
                       </>
                   ) : (
-                    "Get Suggestions"
+                    <>
+                      <Sparkles className="mr-2 h-4 w-4" />
+                      Get Suggestions
+                    </>
                   )}
                 </Button>
                 <Button type="button" variant="outline" onClick={handleRefine} disabled={loading || refining || !profileValue.trim()}>
@@ -159,7 +163,7 @@ export default function SuggestionsPage() {
                       </>
                   ) : (
                     <>
-                        <WandSparkles className="mr-2 h-4 w-4" />
+                        <Sparkles className="mr-2 h-4 w-4" />
                         Refine with AI
                     </>
                   )}
@@ -172,14 +176,19 @@ export default function SuggestionsPage() {
       {suggestions.length > 0 && (
         <Card>
             <CardHeader>
-                <CardTitle className="font-headline">Career Suggestions</CardTitle>
+                <CardTitle className="font-headline">AI-Powered Suggestions</CardTitle>
             </CardHeader>
             <CardContent>
-                <ul className="space-y-4">
+                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {suggestions.map((suggestion, index) => (
-                        <li key={index} className="flex items-start gap-4 p-4 rounded-lg border bg-card">
-                            <Lightbulb className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-                            <p className="text-foreground">{suggestion}</p>
+                        <li key={index} className="flex flex-col items-start gap-4 p-4 rounded-lg border bg-card/80 hover:bg-card hover:shadow-lg transition-all">
+                            <div className="flex items-center gap-3">
+                                <Lightbulb className="h-6 w-6 text-primary flex-shrink-0" />
+                                <h3 className="font-semibold text-foreground">{suggestion}</h3>
+                            </div>
+                            <Button asChild variant="link" size="sm" className="-ml-4">
+                                <Link href={`/dashboard/roadmaps/${suggestion.toLowerCase().replace(/\s+/g, '-')}`}>View Roadmap</Link>
+                            </Button>
                         </li>
                     ))}
                 </ul>

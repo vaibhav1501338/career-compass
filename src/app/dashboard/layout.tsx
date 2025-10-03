@@ -59,7 +59,7 @@ export default function DashboardLayout({
         <SidebarHeader>
           <Logo />
         </SidebarHeader>
-        <SidebarContent>
+        <SidebarContent className="p-2">
           <SidebarNav />
         </SidebarContent>
         <SidebarFooter>

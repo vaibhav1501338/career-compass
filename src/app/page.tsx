@@ -9,6 +9,7 @@ import {
   Linkedin,
   Twitter,
   Github,
+  MoveRight,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -49,8 +50,11 @@ export default function LandingPage() {
           <Button variant="ghost" asChild>
             <Link href="/login">Log In</Link>
           </Button>
-          <Button asChild>
-            <Link href="/signup">Sign Up</Link>
+          <Button asChild className="group">
+            <Link href="/signup">
+              Sign Up
+              <MoveRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </Button>
         </nav>
       </header>
@@ -61,12 +65,11 @@ export default function LandingPage() {
                 src={heroImage.imageUrl}
                 alt={heroImage.description}
                 fill
-                className="object-cover"
+                className="object-cover opacity-10 dark:opacity-20"
                 data-ai-hint={heroImage.imageHint}
                 priority
             />
         }
-          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
           <div className="container relative mx-auto px-4 text-center md:px-6">
             <h1 className="font-headline text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
               Find Your Future with Career Compass
@@ -76,11 +79,11 @@ export default function LandingPage() {
               career. Explore paths, build skills, and land your dream job.
             </p>
             <div className="mt-10 flex justify-center gap-4">
-              <Button size="lg" asChild>
-                <Link href="/signup">Get Started for Free</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="#features">Learn More</Link>
+              <Button size="lg" asChild className="group">
+                <Link href="/signup">
+                  Get Started for Free
+                  <MoveRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
               </Button>
             </div>
           </div>
@@ -100,10 +103,12 @@ export default function LandingPage() {
               {features.map((feature) => (
                 <Card
                   key={feature.title}
-                  className="transform-gpu transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl bg-card/50 backdrop-blur-sm"
+                  className="group transform-gpu border-transparent bg-background/50 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 dark:bg-card/50"
                 >
-                  <CardHeader className="items-center">
-                    {feature.icon}
+                  <CardHeader className="items-center text-center">
+                    <div className="rounded-full bg-primary/10 p-4 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">
+                      {feature.icon}
+                    </div>
                     <CardTitle className="font-headline mt-4 text-xl">
                       {feature.title}
                     </CardTitle>
@@ -130,8 +135,11 @@ export default function LandingPage() {
               </p>
             </div>
             <div className="mx-auto w-full max-w-sm space-y-2">
-              <Button size="lg" className="w-full" asChild>
-                <Link href="/signup">Sign Up Now</Link>
+              <Button size="lg" className="w-full group" asChild>
+                <Link href="/signup">
+                  Sign Up Now
+                  <MoveRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
               </Button>
               <p className="text-xs text-muted-foreground">
                 Start for free. No credit card required.

@@ -15,6 +15,7 @@ import {
   Route,
   FileText,
   User,
+  Sparkles
 } from "lucide-react";
 
 const navItems = [
@@ -30,7 +31,7 @@ const navItems = [
   },
   {
     href: "/dashboard/suggestions",
-    icon: <Lightbulb />,
+    icon: <Sparkles />,
     label: "Suggestions",
   },
   {
@@ -59,7 +60,7 @@ export function SidebarNav() {
         <SidebarMenuItem key={item.href}>
           <SidebarMenuButton
             asChild
-            isActive={pathname === item.href}
+            isActive={pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(item.href))}
             tooltip={item.label}
           >
             <Link href={item.href}>
