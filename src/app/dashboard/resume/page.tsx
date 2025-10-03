@@ -8,12 +8,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { tuneResume } from "@/ai/flows/resume-ai-tuning";
-import { Upload, Loader2, FileText, CheckCircle } from "lucide-react";
+import { correctResumeFormat } from "@/ai/flows/correct-resume-format";
+import { Upload, Loader2, FileText, CheckCircle, WandSparkles } from "lucide-react";
 
 export default function ResumePage() {
   const [file, setFile] = useState<File | null>(null);
   const [feedback, setFeedback] = useState<string>("");
+  const [isFixable, setIsFixable] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [correcting, setCorrecting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -30,6 +33,7 @@ export default function ResumePage() {
       }
       setFile(selectedFile);
       setFeedback("");
+      setIsFixable(false);
     }
   };
 
@@ -42,7 +46,7 @@ export default function ResumePage() {
     });
   };
 
-  const handleSubmit = async () => {
+  const handleGetFeedback = async () => {
     if (!file) {
       toast({
         variant: "destructive",
@@ -54,6 +58,7 @@ export default function ResumePage() {
 
     setLoading(true);
     setFeedback("");
+    setIsFixable(false);
 
     try {
       const resumeDataUri = await fileToDataUri(file);
@@ -61,6 +66,7 @@ export default function ResumePage() {
 
       if (result.feedback) {
         setFeedback(result.feedback);
+        setIsFixable(result.isFixable);
       } else {
         throw new Error("AI did not provide any feedback.");
       }
@@ -74,6 +80,33 @@ export default function ResumePage() {
       setLoading(false);
     }
   };
+
+  const handleCorrectFormat = async () => {
+    if (!file) return;
+    setCorrecting(true);
+    try {
+        const resumeDataUri = await fileToDataUri(file);
+        const result = await correctResumeFormat({ resumeDataUri });
+        if (result.correctedContent) {
+            setFeedback(result.correctedContent);
+            setIsFixable(false); // Hide the button after correction
+            toast({
+                title: "Resume Corrected",
+                description: "The AI has reformatted your resume content below.",
+            });
+        } else {
+            throw new Error("AI could not correct the resume.");
+        }
+    } catch (error) {
+        toast({
+            variant: "destructive",
+            title: "Correction Failed",
+            description: "Failed to correct the resume format. Please try again.",
+        });
+    } finally {
+        setCorrecting(false);
+    }
+  }
 
   return (
     <div className="space-y-8">
@@ -119,7 +152,7 @@ export default function ResumePage() {
             </div>
 
           </div>
-          <Button onClick={handleSubmit} disabled={loading || !file}>
+          <Button onClick={handleGetFeedback} disabled={loading || correcting || !file}>
             {loading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -135,7 +168,24 @@ export default function ResumePage() {
       {feedback && (
         <Card>
           <CardHeader>
-            <CardTitle className="font-headline">AI Feedback</CardTitle>
+            <div className="flex flex-wrap items-center justify-between gap-4">
+                <CardTitle className="font-headline">AI Feedback</CardTitle>
+                {isFixable && !loading && (
+                    <Button onClick={handleCorrectFormat} disabled={correcting} size="sm" variant="outline">
+                        {correcting ? (
+                            <>
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                Correcting...
+                            </>
+                        ) : (
+                            <>
+                                <WandSparkles className="mr-2 h-4 w-4" />
+                                Correct Format with AI
+                            </>
+                        )}
+                    </Button>
+                )}
+            </div>
           </CardHeader>
           <CardContent>
             <div className="prose prose-sm max-w-none text-foreground dark:prose-invert prose-headings:font-headline">
