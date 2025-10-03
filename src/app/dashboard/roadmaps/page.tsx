@@ -7,17 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Route, BookOpen, Code, Briefcase, ArrowRight, PenTool, Shield, WandSparkles } from "lucide-react";
-import { Metadata } from "next";
 import Link from "next/link";
 import { useToast } from "@/hooks/use-toast";
-
-// Since we're using hooks, we can't export metadata directly from the page.
-// We can set it in the layout or keep it here for reference.
-// export const metadata: Metadata = {
-//     title: "Career Roadmaps | Career Compass",
-//     description: "Explore step-by-step roadmaps for your chosen career.",
-// };
-
 
 const sampleRoadmaps = [
     {

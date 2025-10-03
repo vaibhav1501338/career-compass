@@ -29,6 +29,7 @@ import { ApplicationForm } from "@/components/dashboard/application-form";
 import type { JobApplication, ApplicationStatus } from "@/lib/types";
 import { formatDistanceToNow, format } from "date-fns";
 import { Timestamp } from "firebase/firestore";
+import { cn } from "@/lib/utils";
 
 const STATUS_CONFIG: Record<ApplicationStatus, { title: string; color: string }> = {
     Wishlist: { title: "Wishlist", color: "bg-gray-500" },
