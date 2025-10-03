@@ -17,6 +17,7 @@ export default function ResumePage() {
   const [isFixable, setIsFixable] = useState(false);
   const [loading, setLoading] = useState(false);
   const [correcting, setCorrecting] = useState(false);
+  const [cardTitle, setCardTitle] = useState("AI Feedback");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
@@ -34,6 +35,7 @@ export default function ResumePage() {
       setFile(selectedFile);
       setFeedback("");
       setIsFixable(false);
+      setCardTitle("AI Feedback");
     }
   };
 
@@ -59,6 +61,7 @@ export default function ResumePage() {
     setLoading(true);
     setFeedback("");
     setIsFixable(false);
+    setCardTitle("AI Feedback");
 
     try {
       const resumeDataUri = await fileToDataUri(file);
@@ -89,6 +92,7 @@ export default function ResumePage() {
         const result = await correctResumeFormat({ resumeDataUri });
         if (result.correctedContent) {
             setFeedback(result.correctedContent);
+            setCardTitle("Corrected Resume");
             setIsFixable(false); // Hide the button after correction
             toast({
                 title: "Resume Corrected",
@@ -169,7 +173,7 @@ export default function ResumePage() {
         <Card>
           <CardHeader>
             <div className="flex flex-wrap items-center justify-between gap-4">
-                <CardTitle className="font-headline">AI Feedback</CardTitle>
+                <CardTitle className="font-headline">{cardTitle}</CardTitle>
                 {isFixable && !loading && (
                     <Button onClick={handleCorrectFormat} disabled={correcting} size="sm" variant="outline">
                         {correcting ? (
@@ -188,8 +192,8 @@ export default function ResumePage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="prose prose-sm max-w-none text-foreground dark:prose-invert prose-headings:font-headline">
-                <div dangerouslySetInnerHTML={{ __html: feedback.replace(/\n/g, '<br />') }} />
+            <div className="prose prose-sm max-w-none text-foreground dark:prose-invert prose-headings:font-headline prose-p:whitespace-pre-wrap">
+                <p>{feedback}</p>
             </div>
           </CardContent>
         </Card>
