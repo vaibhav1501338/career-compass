@@ -1,0 +1,38 @@
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Default deny all access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Users can read, create and update their own profile.
+    match /users/{userId} {
+      allow read, update, create: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Users can create chat messages, and read/update/delete their own.
+    match /chatHistory/{chatId} {
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      allow read, update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
+    }
+    
+    // Careers and roadmaps are public read for authenticated users.
+    match /careers/{careerId} {
+      allow read: if request.auth != null;
+    }
+    
+    match /roadmaps/{roadmapId} {
+      allow read: if request.auth != null;
+    }
+
+    // Users can manage their own resumes.
+    match /resumes/{resumeId} {
+      allow read, update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+    }
+  }
+}

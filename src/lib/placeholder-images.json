@@ -1,3 +1,34 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "landing-hero",
+      "description": "A person looking at a digital map with multiple paths, symbolizing career choices.",
+      "imageUrl": "https://images.unsplash.com/photo-1539992190939-08f22d7ebaad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjYXJlZXIlMjBjaG9pY2V8ZW58MHx8fHwxNzU5NDI5MjQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "career choice"
+    },
+    {
+      "id": "dashboard-chat",
+      "description": "A friendly robot icon.",
+      "imageUrl": "https://images.unsplash.com/photo-1684487747720-1ba29cda82f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxBSSUyMGNoYXR8ZW58MHx8fHwxNzU5NDg5NjE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "AI chat"
+    },
+    {
+      "id": "dashboard-suggestions",
+      "description": "A lightbulb representing new ideas and suggestions.",
+      "imageUrl": "https://images.unsplash.com/photo-1704793027939-10d2af64b717?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2FyZWVyJTIwaWRlYXN8ZW58MHx8fHwxNzU5NDg5NjE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "career ideas"
+    },
+    {
+      "id": "dashboard-roadmaps",
+      "description": "A winding road or path on a map.",
+      "imageUrl": "https://images.unsplash.com/photo-1587226513115-f1e3439f1a35?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjYXJlZXIlMjByb2FkbWFwfGVufDB8fHx8MTc1OTQ4OTYxNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "career roadmap"
+    },
+    {
+      "id": "dashboard-resume",
+      "description": "A professional document or resume.",
+      "imageUrl": "https://images.unsplash.com/photo-1635253548172-d82ffe76449d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwcm9mZXNzaW9uYWwlMjByZXN1bWV8ZW58MHx8fHwxNzU5NDg5NjE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional resume"
+    }
+  ]
 }
