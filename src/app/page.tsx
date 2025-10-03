@@ -59,7 +59,7 @@ export default function LandingPage() {
         </nav>
       </header>
       <main className="flex-1">
-        <section className="relative w-full py-20 md:py-32 lg:py-40">
+        <section className="relative w-full py-20 md:py-32 lg:py-40 overflow-hidden">
         {heroImage && 
             <Image
                 src={heroImage.imageUrl}
@@ -70,15 +70,16 @@ export default function LandingPage() {
                 priority
             />
         }
+          <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent dark:from-background/70"></div>
           <div className="container relative mx-auto px-4 text-center md:px-6">
-            <h1 className="font-headline text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="font-headline text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl animate-fade-in-up">
               Find Your Future with Career Compass
             </h1>
-            <p className="mx-auto mt-6 max-w-3xl text-lg text-foreground/80 md:text-xl">
+            <p className="mx-auto mt-6 max-w-3xl text-lg text-foreground/80 md:text-xl animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
               Your personal AI-powered guide to a successful and fulfilling
               career. Explore paths, build skills, and land your dream job.
             </p>
-            <div className="mt-10 flex justify-center gap-4">
+            <div className="mt-10 flex justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               <Button size="lg" asChild className="group">
                 <Link href="/signup">
                   Get Started for Free
@@ -91,19 +92,20 @@ export default function LandingPage() {
         <section id="features" className="w-full bg-muted/40 py-20 md:py-32">
           <div className="container mx-auto px-4 md:px-6">
             <div className="mx-auto mb-16 max-w-3xl text-center">
-              <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl">
+              <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl animate-fade-in-up">
                 A Smarter Way to Navigate Your Career
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground">
+              <p className="mt-4 text-lg text-muted-foreground animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                 Career Compass provides a suite of AI tools to help you every
                 step of the way.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {features.map((feature) => (
+              {features.map((feature, i) => (
                 <Card
                   key={feature.title}
-                  className="group transform-gpu border-transparent bg-background/50 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 dark:bg-card/50"
+                  className="group transform-gpu border-transparent bg-background/50 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 dark:bg-card/50 animate-fade-in-up"
+                  style={{ animationDelay: `${i * 150 + 400}ms` }}
                 >
                   <CardHeader className="items-center text-center">
                     <div className="rounded-full bg-primary/10 p-4 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">

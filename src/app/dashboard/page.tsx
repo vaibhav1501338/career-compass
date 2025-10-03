@@ -38,7 +38,7 @@ export default function DashboardPage() {
     const displayName = user?.displayName?.split(" ")[0] || "there";
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 animate-fade-in-up">
             <div>
                 <h1 className="font-headline text-3xl font-bold tracking-tight md:text-4xl">
                     Welcome back, {displayName}!
@@ -49,8 +49,12 @@ export default function DashboardPage() {
             </div>
             
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {features.map((feature) => (
-                    <Card key={feature.title} className="group flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-card/80 hover:bg-card">
+                {features.map((feature, i) => (
+                    <Card 
+                        key={feature.title} 
+                        className="group flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-card/80 hover:bg-card animate-fade-in-up"
+                        style={{ animationDelay: `${i * 100}ms` }}
+                    >
                         <CardHeader>
                             <div className="rounded-lg bg-primary/10 p-3 w-fit transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">
                                 {feature.icon}

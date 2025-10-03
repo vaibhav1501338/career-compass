@@ -9,24 +9,24 @@ import {
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
-  LayoutDashboard,
-  MessageSquare,
+  LayoutGrid,
+  MessageCircle,
   Lightbulb,
   Route,
   FileText,
   User,
-  Sparkles
+  Sparkles,
 } from "lucide-react";
 
 const navItems = [
   {
     href: "/dashboard",
-    icon: <LayoutDashboard />,
+    icon: <LayoutGrid />,
     label: "Dashboard",
   },
   {
     href: "/dashboard/chat",
-    icon: <MessageSquare />,
+    icon: <MessageCircle />,
     label: "AI Chat",
   },
   {
