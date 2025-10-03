@@ -12,11 +12,19 @@ import { useToast } from '@/hooks/use-toast';
 export default function RoadmapDetailsPage({ params }: { params: { slug: string } }) {
   const [roadmap, setRoadmap] = useState<GenerateCareerRoadmapOutput | null>(null);
   const [loading, setLoading] = useState(true);
+  const [careerTitle, setCareerTitle] = useState('');
   const { toast } = useToast();
 
-  const careerTitle = params.slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  useEffect(() => {
+    if (params.slug) {
+      const title = params.slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+      setCareerTitle(title);
+    }
+  }, [params.slug]);
 
   useEffect(() => {
+    if (!careerTitle) return;
+
     const fetchRoadmap = async () => {
       setLoading(true);
       try {
@@ -46,7 +54,7 @@ export default function RoadmapDetailsPage({ params }: { params: { slug: string 
         </Button>
         <div>
             <h1 className="font-headline text-3xl font-bold tracking-tight md:text-4xl">
-            {careerTitle} Roadmap
+            {careerTitle ? `${careerTitle} Roadmap` : 'Roadmap'}
             </h1>
             <p className="mt-1 text-lg text-muted-foreground">
             Your personalized step-by-step guide.
