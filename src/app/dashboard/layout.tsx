@@ -40,6 +40,7 @@ function DashboardSidebar() {
             <div className="relative flex h-full w-full flex-col">
                 <SidebarHeader>
                     <Logo />
+                    <SidebarToggle />
                 </SidebarHeader>
                 <SidebarContent className="p-2">
                     <SidebarNav />
@@ -50,14 +51,6 @@ function DashboardSidebar() {
                         <span>Logout</span>
                     </SidebarMenuButton>
                 </SidebarFooter>
-                <div
-                    className={cn(
-                        "absolute right-0 top-1/2 z-20 -translate-y-1/2 translate-x-1/2",
-                        "rounded-full border bg-background p-0.5"
-                    )}
-                >
-                    <SidebarToggle />
-                </div>
             </div>
       </Sidebar>
     );
@@ -92,7 +85,7 @@ export default function DashboardLayout({
   }
 
   return (
-    <SidebarProvider defaultOpen={true}>
+    <SidebarProvider defaultOpen={false}>
         <DashboardSidebar />
       <div className="flex flex-1 flex-col">
         <DashboardHeader />
