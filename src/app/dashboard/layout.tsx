@@ -10,6 +10,7 @@ import {
   SidebarHeader,
   SidebarContent,
   SidebarFooter,
+  SidebarToggle,
 } from "@/components/ui/sidebar";
 import { Logo } from "@/components/logo";
 import { SidebarNav } from "@/components/dashboard/sidebar-nav";
@@ -58,6 +59,7 @@ export default function DashboardLayout({
       <Sidebar>
         <SidebarHeader>
           <Logo />
+          <SidebarToggle />
         </SidebarHeader>
         <SidebarContent className="p-2">
           <SidebarNav />
