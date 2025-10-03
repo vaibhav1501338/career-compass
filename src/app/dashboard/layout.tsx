@@ -12,6 +12,7 @@ import {
   SidebarFooter,
   SidebarToggle,
   useSidebar,
+  SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { Logo } from "@/components/logo";
 import { SidebarNav } from "@/components/dashboard/sidebar-nav";
@@ -44,10 +45,10 @@ function DashboardSidebar() {
                     <SidebarNav />
                 </SidebarContent>
                 <SidebarFooter>
-                    <Button variant="ghost" onClick={handleSignOut} className="w-full justify-start">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Logout</span>
-                    </Button>
+                    <SidebarMenuButton variant="ghost" onClick={handleSignOut} className="w-full justify-start" tooltip="Logout">
+                        <LogOut />
+                        <span>Logout</span>
+                    </SidebarMenuButton>
                 </SidebarFooter>
                 <div
                     className={cn(
