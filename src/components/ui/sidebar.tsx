@@ -229,8 +229,6 @@ const Sidebar = React.forwardRef<
             "group-data-[collapsible=offcanvas]:w-0",
             "group-data-[state=expanded]:w-[var(--sidebar-width)]",
             "group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]",
-            "group-data-[state=collapsed]:group-hover/sidebar-wrapper:w-[var(--sidebar-width)]",
-            "group-data-[side=right]:rotate-180",
             variant === "floating" || variant === "inset"
               ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4))]"
               : "group-data-[collapsible=icon]:w-[--sidebar-width-icon]",
@@ -242,7 +240,6 @@ const Sidebar = React.forwardRef<
             "duration-200 fixed inset-y-0 z-10 hidden h-svh transition-[left,right,width] ease-linear md:flex",
             "group-data-[state=expanded]:w-[var(--sidebar-width)]",
             "group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]",
-            "group-data-[state=collapsed]:group-hover/sidebar-wrapper:w-[var(--sidebar-width)]",
             side === "left"
               ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
               : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
@@ -781,5 +778,3 @@ export {
   SidebarTrigger,
   useSidebar,
 }
-
-    
