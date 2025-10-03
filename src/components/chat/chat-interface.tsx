@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Send, Bot, User as UserIcon, Loader2 } from "lucide-react";
+import { Send, Bot, User as UserIcon, Loader2, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
@@ -31,6 +31,14 @@ export function ChatInterface() {
       return nameParts.map((part) => part[0]).join("").toUpperCase();
     }
     return 'U';
+  };
+
+  const handleClearChat = () => {
+    setMessages([]);
+    toast({
+        title: "Chat Cleared",
+        description: "Your conversation history has been cleared.",
+    })
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -81,6 +89,13 @@ export function ChatInterface() {
     <div className="flex h-[calc(100vh-10rem)] flex-col">
       <ScrollArea className="flex-1" ref={scrollAreaRef}>
         <div className="space-y-6 p-4">
+          {messages.length === 0 && (
+            <div className="flex flex-col items-center justify-center h-full text-center text-muted-foreground pt-20">
+                <Bot className="h-12 w-12 mb-4" />
+                <h2 className="text-xl font-semibold">Welcome to AI Career Chat</h2>
+                <p>Ask me anything about careers, skills, or getting job-ready!</p>
+            </div>
+          )}
           {messages.map((message, index) => (
             <div
               key={index}
@@ -141,6 +156,12 @@ export function ChatInterface() {
             <Send className="h-4 w-4" />
             <span className="sr-only">Send</span>
           </Button>
+          {messages.length > 0 && (
+            <Button type="button" variant="outline" size="icon" onClick={handleClearChat} disabled={loading}>
+                <Trash2 className="h-4 w-4" />
+                <span className="sr-only">Clear chat</span>
+            </Button>
+          )}
         </form>
       </div>
     </div>
